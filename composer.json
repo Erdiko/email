@@ -1,0 +1,26 @@
+{
+	"name":"erdiko/email",
+    "description": "Email Package",
+    "keywords": ["email", "erdiko"],
+    "homepage": "http://erdiko.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arroyo Labs",
+            "email": "info@arroyolabs.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "pimple/pimple": "^3.0",
+        "phpmailer/phpmailer": "~6.0"
+    },
+    "config": {
+        "minimum-stability": "dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "erdiko\\email\\": "src/"
+        }
+    }
+}
