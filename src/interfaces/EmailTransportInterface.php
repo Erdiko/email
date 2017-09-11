@@ -5,24 +5,26 @@ namespace erdiko\ email\interfaces;
 interface EmailTransportInterface
 {
 
-    public function _construct();
+    function _construct();
 
-    public function setFrom($email, $name);
+    function from($email, $name);
 
-    public function setTo($email, $name);
+    function to($email, $name);
 
-    public function addTo($email, $name);
+    function addTo($email, $name);
 
-    public function setCc($email, $name);
+    function addCc($email, $name);
 
-    public function setBcc($email, $name);
+    function addBcc($email, $name);
 
-    public function setReplyTo($email, $name);
+    function addReplyTo($email, $name);
 
-    public function addReplyTo($email, $name);
+    function addAttachments(array $files);
 
-    public function addAttachments(array $files);
+    function plain($body);
 
-    public function setSend();
+    function html($body);
+
+    function send();
 
 }
