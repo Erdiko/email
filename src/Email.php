@@ -6,7 +6,7 @@ use erdiko\core\Container;
 use erdiko\email\exceptions\EmailTransportConfigException;
 use Slim\Views\Twig;
 
-class Mail
+class Email
 {
     protected $container;
 
@@ -81,7 +81,12 @@ class Mail
         $this->transport->plain($body);
     }
 
-    public function bodyTemplate($template, $data)
+    public function subject($subject)
+    {
+        $this->transport->subject($subject);
+    }
+
+    public function bodyTemplate($template, array $data)
     {
         $html = $this->container->theme->fetch($template, $data);
         $this->transport->html($html);
@@ -89,7 +94,7 @@ class Mail
 
     public function send()
     {
-        $this->transport->send();
+        return $this->transport->send();
     }
 
 }

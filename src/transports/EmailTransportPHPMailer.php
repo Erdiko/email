@@ -50,6 +50,11 @@ class EmailTransportPHPMailer extends EmailTransportAbstract
         }
     }
 
+    public function subject($subject)
+    {
+        $this->mailer->Subject = $subject;
+    }
+
     public function plain($body)
     {
         $this->mailer->AltBody = $body;
@@ -62,7 +67,7 @@ class EmailTransportPHPMailer extends EmailTransportAbstract
 
     public function send()
     {
-        $this->mailer->send();
+        return $this->mailer->send();
     }
 
     public function initSmtpConfig()
@@ -80,4 +85,5 @@ class EmailTransportPHPMailer extends EmailTransportAbstract
     {
         $this->mailer->isSendmail();
     }
+
 }

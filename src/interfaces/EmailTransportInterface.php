@@ -21,6 +21,8 @@ interface EmailTransportInterface
 
     function addAttachments(array $files);
 
+    function subject($subject);
+
     function plain($body);
 
     function html($body);

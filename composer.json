@@ -15,6 +15,10 @@
         "pimple/pimple": "^3.0",
         "phpmailer/phpmailer": "~6.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "guzzlehttp/guzzle": "~6.0"
+    },
     "config": {
         "minimum-stability": "dev"
     },
