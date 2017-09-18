@@ -42,7 +42,7 @@ class EmailTest extends BaseTestCase
         $email->from($fromEmail, $fromName);
         $email->to($toEmail, $toName);
         $email->subject($subject);
-        $email->bodyTemplate($template, $templateData);
+        $email->template($template, $templateData);
         $sent = $email->send();
 
         $this->assertTrue($sent);

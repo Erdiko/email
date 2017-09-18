@@ -3,6 +3,7 @@
 namespace erdiko\email;
 
 use erdiko\core\Container;
+use erdiko\email\exceptions\EmailTransportException;
 use erdiko\email\exceptions\EmailTransportConfigException;
 use Slim\Views\Twig;
 
@@ -72,24 +73,24 @@ class Email
         $this->transport->from($email, $name);
     }
 
-    public function body($body, $isHtml=false)
+    public function plain($plain)
     {
-        $hasHtmlTags = $body != strip_tags($body);
-        if ($hasHtmlTags || $isHtml!==false) {
-            $this->transport->html($body);
-        }
-        $this->transport->plain($body);
+        $this->transport->plain($plain);
+    }
+
+    public function html($body)
+    {
+        $this->transport->html($body);
+    }
+
+    public function template($template, array $data)
+    {
+        $this->transport->html($this->container->theme->fetch($template, $data));
     }
 
     public function subject($subject)
     {
         $this->transport->subject($subject);
-    }
-
-    public function bodyTemplate($template, array $data)
-    {
-        $html = $this->container->theme->fetch($template, $data);
-        $this->transport->html($html);
     }
 
     public function send()

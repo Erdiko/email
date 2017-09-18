@@ -1,6 +1,6 @@
 <?php
 
-namespace erdiko\email;
+namespace erdiko\email\exceptions;
 
 class EmailTransportException extends \Exception
 {

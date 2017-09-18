@@ -29,13 +29,14 @@ abstract class EmailTransportAbstract implements EmailTransportInterface
 
     protected function initConfig()
     {
+        $isSendmail = isset($this->config['sendmail']) && $this->config['sendmail'];
         $isSmtp = isset($this->config['smtp']) && $this->config['smtp'];
         switch (true) {
             case $isSmtp:
                 $this->validateSmtpConfig();
                 $this->initSmtpConfig();
             break;
-            default:
+            case $isSendmail:
                 $this->validateDefaultConfig();
                 $this->initDefaultConfig();
         }

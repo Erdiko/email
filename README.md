@@ -20,10 +20,8 @@ composer require erdiko/email
 ### Transports
 
 Current Transports Available:
- - PHPMailer: PHPMailerTransport
-
-Coming Transports in development:
- - MailGun: SessionDriverRedis
+ - PHPMailer: EmailTransportPHPMailer
+ - Mailgun: EmailTransportMailgun - API and SMTP
 
 ### Dependencies
 
@@ -33,56 +31,48 @@ This package depends of Erdiko\Core
 
 File Path
 ```
-[site_root]/app/config/default/email.json
+[site_root]/app/config/default/email.php
 ```
 
 File format
 ```
-{
-  "default": { // Driver Source
-    "driver": "file",  // Driver Type
-    "path": "/tmp",
-    "lifetime": 60000
-  }
-}
+[
+    "transport" => "Mailgun",
+    "config" => [
+        "smtp" => true,
+        "apikey" => "API_KEY",
+        "user" => "USER",
+        "pass" => 'PASS',
+        "host" => "HOST",
+        "domain" => "DOMAIN",
+        "port" => "587",
+        "secure" => "tls",
+        "auth" => true
+    ]
+]
 ```
 ### Available Methods
 
-You will find several methods that will satisfy your requirements for handling session data.
+You will find several methods that will satisfy your requirements for handling email data.
 
- - get
- - set
- - has
- - forget
- - exists
+ - subject
+ - to
+ - from
+ - plain
+ - html
+ - template
+ - send
 
 ### Basic Usage
-For more details please see [*Advance Usage Detail*](/advanceUsage.md) Page.
+```
+$email = $container->email;
 
-#### Set Method
-Set the value on session
-```
-Session::set('name', 'value');
-```
-#### Get method
-Retrieves the value from the session
-```
-Session::get('name');
-```
-#### Has method
-Verifies if the given key exists and has a value on the session
-```
-Session::get('name');
-```
-#### Exists method
-Verifies if the given key exists, without verify if has or not value
-```
-Session::set('name', 'value');
-```
-#### Forget method
-Removes the given key from the session
-```
-Session::set('name', 'value');
+$email->subject('Subject Test');
+$email->from('from@email.com', 'From Name');
+$email->to('to@email.com', 'To Name');
+$email->plain('plain text email');
+$email->html('<h1>Test email</h1><p>Test Body</p>');
+$email->send();
 ```
 
 ### Tests
